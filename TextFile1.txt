@@ -1,0 +1,20 @@
+1- Entity Layer
+2- Data Access Layer
+3- Business Layer
+4- Presentation - UI Layer
+
+
+
+------------
+
+
+CRUD -> Create Read Update Delete
+
+
+Tables
+------------
+Heading   => ID, HeadingName, Date, Writer
+Content
+Writer
+Contact
+About
