@@ -40,12 +40,17 @@ namespace BusinessLayer.Concrete
 
         public List<Content> GetList()
         {
-            throw new NotImplementedException();
+            return _contentDal.List();
         }
 
         public List<Content> GetListByHeadingId(int id)
         {
             return _contentDal.List(x => x.HeadingId == id);
+        }
+
+        public List<Content> GetListByWriter(int id)
+        {
+            return _contentDal.List(x => x.WriterId == id);
         }
     }
 }
