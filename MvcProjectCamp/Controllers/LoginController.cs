@@ -1,4 +1,6 @@
-﻿using DataAccessLayer.Concrete;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace MvcProjectCamp.Controllers
     public class LoginController : Controller
     {
         // GET: Login
+
+        WriterLoginManager writerLoginManager = new WriterLoginManager(new EfWriterDal());
 
 
         [HttpGet]
@@ -47,8 +51,11 @@ namespace MvcProjectCamp.Controllers
         [HttpPost]
         public ActionResult WriterLogin(Writer p)
         {
-            Context context = new Context();
-            var writerUserInfo = context.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
+            //Context context = new Context();
+            //var writerUserInfo = context.Writers.FirstOrDefault(x => x.WriterMail == p.WriterMail && x.WriterPassword == p.WriterPassword);
+
+            var writerUserInfo = writerLoginManager.GetWriter(p.WriterMail, p.WriterPassword);
+
             if (writerUserInfo != null)
             {
                 FormsAuthentication.SetAuthCookie(writerUserInfo.WriterMail, false);
@@ -60,5 +67,13 @@ namespace MvcProjectCamp.Controllers
                 return RedirectToAction("WriterLogin");
             }
         }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
+
+        }
+
     }
 }

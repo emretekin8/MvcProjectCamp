@@ -5,7 +5,6 @@
     ViewBag.Title = "SendBox";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
-
 <!DOCTYPE html>
 <html>
 
@@ -72,6 +71,13 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
+                                        int range = 45;
+                                        string messageEnding = "...";
+                                        if (item.MessageContent.Length < range)
+                                        {
+                                            messageEnding = "";
+                                            range = item.MessageContent.Length;
+                                        }
                                         <tr>
                                             <td>
                                                 <div class="icheck-primary">
@@ -82,7 +88,7 @@
                                             <td class="mailbox-star"><a href="/WriterPanelMessage/GetSendBoxMessageDetails/@item.MessageId"><i class="fas fa-star text-warning"></i></a></td>
                                             <td class="mailbox-name"><a href="/WriterPanelMessage/GetSendBoxMessageDetails/@item.MessageId">@item.ReceiverMail</a></td>
                                             <td class="mailbox-subject">
-                                                <b>@item.Subject</b> - @item.MessageContent.Substring(0, 30)...
+                                                <b>@item.Subject</b> | @item.MessageContent.Substring(0, range) @messageEnding
                                             </td>
                                             <td class="mailbox-attachment"></td>
                                             <td class="mailbox-date">@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>

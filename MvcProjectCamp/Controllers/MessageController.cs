@@ -20,15 +20,15 @@ namespace MvcProjectCamp.Controllers
 
 
         [Authorize]
-        public ActionResult Inbox()
+        public ActionResult Inbox(string p)
         {
-            var messageList = messageManager.GetListInbox();
+            var messageList = messageManager.GetListInbox(p);
             return View(messageList);
         }
 
-        public ActionResult SendBox()
+        public ActionResult SendBox(string p)
         {
-            var messageList = messageManager.GetListSendbox();
+            var messageList = messageManager.GetListSendbox(p);
             return View(messageList);
         }
 

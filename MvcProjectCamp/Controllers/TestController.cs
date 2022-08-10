@@ -18,5 +18,11 @@ namespace MvcProjectCamp.Controllers
         {
             return View();
         }
+
+        public ActionResult Test3()
+        {
+            return View();
+        }
+
     }
 }
