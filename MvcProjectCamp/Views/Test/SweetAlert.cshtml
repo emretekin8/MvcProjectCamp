@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "SweetAlert";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/Scripts/jquery-3.6.0.js"></script>
+
+<br />
+<button class="btn btn-primary" id="btn1">Button1</button>
+<button class="btn btn-warning" id="btn2">Button2</button>
+<button class="btn btn-danger" id="btn3">Button3</button>
+
+
+<script>
+    $('#btn1').click(function () {
+        swal("Sweet MVC PROJECT");
+    });
+</script>
+
+<script>
+    $('#btn2').click(function () {
+        swal(".Net MVC5", "NTT DATA BUSINESS SOLUTIONS TURKEY");
+
+    });
+</script>
+
+<script>
+    $('#btn3').click(function () {
+        swal("WHOA", "Proje sona erdi", "success");
+
+    });
+</script>

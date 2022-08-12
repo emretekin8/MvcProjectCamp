@@ -19,16 +19,11 @@ namespace MvcProjectCamp.Controllers
             return View();
         }
 
-        Context context = new Context();
         public ActionResult GetAllContent(string p)
         {
-            var values = from x in context.Contents select x;
-            if (!string.IsNullOrEmpty(p))
-            {
-                values  = values.Where(y=>y.ContentValue.Contains(p));
-            }
+            var values = contentManager.GetList(p);
             //var values = context.Contents.ToList();
-            return View(values.ToList());
+            return View(values);
         }
 
         public ActionResult ContentByHeading(int id)
